@@ -1,37 +1,28 @@
-#include <iostream>
-#include <algorithm>
+#include <bits/stdc++.h>
+
 using namespace std;
 
-// 멘토와 멘티 정보를 저장하는 배열
-pair<string, string> arr[100001];
-
-// 비교 함수
-bool compare(pair<string, string> a, pair<string, string> b) {
+bool cmp(pair<string, string>a, pair<string, string>b) {
     if (a.first == b.first) {
-        return a.second > b.second; // 멘티 이름은 내림차순
+        return a.second > b.second;
     }
-    return a.first < b.first; // 멘토 이름은 오름차순
+    else {
+        return a.first < b.first;
+    }
 }
 
 int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-
-    int n; // 멘토-멘티 쌍의 수
-    cin >> n;
-
-    // 입력 받기
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i].first >> arr[i].second;
+    int N; cin >> N;
+    vector<pair<string, string>>v;
+    for (int i=0; i<N; i++){
+        string a,b; cin >> a >> b;
+        v.push_back({a,b});
+    }
+    sort(v.begin(), v.end(), cmp);
+    for (int i=0; i<N; i++) {
+        cout << v[i].first << " " << v[i].second << '\n';
     }
 
-    // 정렬
-    sort(arr, arr + n, compare);
-
-    // 출력
-    for (int i = 0; i < n; i++) {
-        cout << arr[i].first << ' ' << arr[i].second << '\n';
-    }
 
     return 0;
 }
